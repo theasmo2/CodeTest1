@@ -16,6 +16,7 @@ hunger = 0;
 tiredness = 0;
 target = 0;
 task = 0;
+job_path = path_add();
 
 // variables to manage time
 

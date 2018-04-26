@@ -6,15 +6,19 @@
 // remove from unassigned list and add to the assigned list.
 
 
-while (!ds_queue_empty(unassigned_job_list)){	
+while (ds_queue_empty(unassigned_job_list) = false){	
 		for(worker_index=0; worker_index<total_workers; worker_index++){
 			if (workers[|worker_index].current_state = worker_states.idle) {
 				current_job = ds_queue_dequeue(unassigned_job_list);
-				workers[|worker_index].current_state = worker_states.working;
-				workers[|worker_index].task = current_job;
-				workers[|worker_index].target = current_job[? "obj"];
+				with workers[|worker_index] {					
+					task = other.current_job;
+					target = other.current_job[? "obj"];
+					target.selected = false;
+					mp_potential_path(job_path,(target.x + 33),(target.y + 33),8,10,true);
+					current_state = worker_states.working;
+				}
 				current_job[? "assigned"] = workers[|worker_index];
-				workers[|worker_index].target.selected = false;
+				
 				ds_list_add(assigned_job_list,current_job);
 				break;
 			}

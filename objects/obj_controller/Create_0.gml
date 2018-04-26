@@ -17,7 +17,7 @@ for(index=0; index<total_workers; index++){
 }
 
 // This list tracks jobs
-assigned_job_list = ds_queue_create();
-unassigned_job_list = ds_list_create();
+assigned_job_list = ds_list_create();
+unassigned_job_list = ds_queue_create();
 
 alarm_set(0,30);
